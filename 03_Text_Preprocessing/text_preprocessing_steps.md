@@ -8,3 +8,5 @@
 6. Spelling Correction
 7. Remove Stopwords
 8. Handle Emojis
+9. Tokenization
+10. Stemming
