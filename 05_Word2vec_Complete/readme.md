@@ -40,3 +40,10 @@ model = KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin.gz
 # Example usage
 vector = model['king']
 similar_words = model.most_similar('king')
+
+-------
+# 🧭 Key Idea
+Words with similar meanings have vectors close together in space.
+For example:
+
+vector("King") - vector("Man") + vector("Woman") ≈ vector("Queen")
