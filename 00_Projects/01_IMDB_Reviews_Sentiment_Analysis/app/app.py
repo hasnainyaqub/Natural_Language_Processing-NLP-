@@ -1,11 +1,17 @@
 import streamlit as st
 import re
 import string
-import spacy
 import gensim
 import joblib
 import numpy as np
 from nltk.corpus import stopwords
+import spacy
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    import subprocess
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
 # ------------------------
 # Load Models
