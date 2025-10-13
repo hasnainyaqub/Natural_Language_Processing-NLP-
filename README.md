@@ -5,6 +5,10 @@ It covers essential techniques and practical implementations that help machines 
 
 ---
 
+![Alt text](NLP.png)
+
+---
+
 ## 📘 What I'm Learning
 
 - Text preprocessing (cleaning, tokenization, stopword removal)  
