@@ -1,0 +1,88 @@
+Create a streamlit app for my Imdb_Sentiment_Analysis model train on 50k reviews with given steps.
+tell me which things needed, which models , and how to export them
+
+1.# lowercase
+df['review'] = df['review'].str.lower()
+df['review'][0]
+
+2. # revmove html tags
+import re
+def remove_html(text):
+    pattern = re.compile('<.*?>')
+    return pattern.sub(r'', text)
+df['review'] = df['review'].apply(lambda x: remove_html(x))
+df['review'][0]
+
+3.# removing punctuation and special characters
+import string
+exclude = string.punctuation
+def remove_punc(text):
+    return text.translate(str.maketrans('', '', exclude))
+df['review'] = df['review'].apply(lambda x: remove_punc(x))
+df['review'][0]
+
+4.# remove stopwords
+import nltk
+from nltk.corpus import stopwords
+stop = stopwords.words('english')
+def remove_stopwords(text):
+    return " ".join([word for word in str(text).split() if word not in stop])
+df['review'] = df['review'].apply(lambda x: remove_stopwords(x))
+df['review'][0]
+
+5.# tokenization using spaCy
+import spacy
+nlp = spacy.load('en_core_web_sm')
+
+def tokenize_spacy(docs):
+    tokenized = []
+    for doc in nlp.pipe(docs, batch_size=50, n_process=4):  # use all CPU cores
+        tokenized.append([token.text for token in doc])
+    return tokenized
+
+df['review'] = tokenize_spacy(df['review'])
+
+
+6. # Train Word2Vec
+model = gensim.models.Word2Vec(
+    sentences=df['review'],
+    vector_size=200,
+    window=10,
+    min_count=2,
+    workers=4,
+    epochs=20
+)
+# Save the entire model (including vocabulary, weights, etc.)
+model.save("w2v_imdb.model")
+
+7. import numpy as np
+
+def document_vector(tokens):
+    valid_words = [w for w in tokens if w in model.wv.key_to_index]
+    if not valid_words:
+        return np.zeros(model.vector_size)
+    return np.mean(model.wv[valid_words], axis=0)
+
+
+8. # Build feature matrix
+X = np.array([document_vector(doc) for doc in df['review']])
+y = df['sentiment'].map({'positive': 1, 'negative': 0}).values
+
+9. from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+
+10. from sklearn.linear_model import LogisticRegression
+
+lr_model = LogisticRegression(max_iter=1000)
+lr_model.fit(X_train, y_train)
+
+11. from sklearn.metrics import accuracy_score, classification_report
+
+# For Logistic Regression
+y_pred_lr = lr_model.predict(X_test)
+print("Logistic Regression Accuracy:", accuracy_score(y_test, y_pred_lr))
+print(classification_report(y_test, y_pred_lr))
