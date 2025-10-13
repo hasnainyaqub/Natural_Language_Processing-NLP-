@@ -1,11 +1,11 @@
-# 🧠 Natural Language Processing (NLP) Learning Journey
+![Alt text](NLP.png)
+
+----
+
+# 🤖 Natural Language Processing (NLP) Learning Journey
 
 This repository contains my notes, experiments, and projects as I learn **Natural Language Processing (NLP)**.  
 It covers essential techniques and practical implementations that help machines understand and process human language.
-
----
-
-![Alt text](NLP.png)
 
 ---
 
