@@ -5,15 +5,17 @@ import gensim
 import joblib
 import numpy as np
 from nltk.corpus import stopwords
+
+# Try to load English model; download if missing
 import spacy
 import subprocess
 
-# Try to load English model; download if missing
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
     subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
     nlp = spacy.load("en_core_web_sm")
+
 
 # ------------------------
 # Load Models
