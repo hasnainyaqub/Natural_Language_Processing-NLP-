@@ -32,6 +32,17 @@ def load_models():
 
 w2v_model, lr_model, nlp, stop = load_models()
 
+import os
+import gensim
+import joblib
+
+def load_models():
+    base_dir = os.path.dirname(__file__)  # current folder (app/)
+    models_path = os.path.join(base_dir, "models")
+
+    w2v_model = gensim.models.Word2Vec.load(os.path.join(models_path, "w2v_imdb.model"))
+    lr_model = joblib.load(os.path.join(models_path, "imdb_lr_model.pkl"))
+    return w2v_model, lr_model
 
 # ------------------------
 # Preprocessing
