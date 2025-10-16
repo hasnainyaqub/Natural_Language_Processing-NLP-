@@ -17,10 +17,10 @@ nlp = spacy.load("en_core_web_sm")
 @st.cache_resource
 def load_models():
     # Load Word2Vec
-    w2v_model = gensim.models.Word2Vec.load("w2v_imdb.model")
+    w2v_model = gensim.models.Word2Vec.load("models/w2v_imdb.model")
     
     # Load classifier
-    lr_model = joblib.load("lr_imdb_model.pkl")
+    lr_model = joblib.load("models/lr_imdb_model.pkl")
     
     # Load spaCy
     nlp = spacy.load("en_core_web_sm", disable=["parser", "ner", "lemmatizer"])
