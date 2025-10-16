@@ -1,5 +1,6 @@
 streamlit==1.50.0
 spacy==3.8.7
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0.tar.gz#egg=en_core_web_sm
 scipy==1.8.0
 gensim==4.3.2
 scikit-learn==1.5.2
