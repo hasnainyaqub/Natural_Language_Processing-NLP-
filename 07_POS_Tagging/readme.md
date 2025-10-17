@@ -186,4 +186,4 @@ With advances in deep learning and transformers, POS tagging has become more acc
 
 ---
 
-**[References](http://geeksforgeeks.org/nlp/nlp-part-of-speech-default-tagging/) **
+**[References](http://geeksforgeeks.org/nlp/nlp-part-of-speech-default-tagging/)**
