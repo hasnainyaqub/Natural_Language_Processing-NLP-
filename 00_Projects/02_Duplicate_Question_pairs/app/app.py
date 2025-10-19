@@ -10,8 +10,8 @@ from scipy.sparse import hstack
 # -------------------------------
 @st.cache_resource
 def load_model():
-    vectorizer = joblib.load('tfidf_vectorizer.pkl')
-    model = joblib.load('tfidf_duplicate_model.pkl')
+    vectorizer = joblib.load('models/tfidf_vectorizer.pkl')
+    model = joblib.load('models.tfidf_duplicate_model.pkl')
     return vectorizer, model
 
 vectorizer, model = load_model()
