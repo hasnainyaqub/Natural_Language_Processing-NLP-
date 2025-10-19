@@ -1,0 +1,9 @@
+streamlit
+tensorflow
+numpy
+pandas
+scikit-learn
+nltk
+re
+beautifulsoup4
+tqdm
